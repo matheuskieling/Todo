@@ -6,5 +6,5 @@ namespace ToDo.Models.DTO;
 public record AddTodoDto(
     [Required] string Title,
     string? Description,
-    TodoCategory? Category
+    string? CategoryName
 );
