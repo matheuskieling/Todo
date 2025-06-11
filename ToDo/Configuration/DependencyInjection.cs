@@ -1,5 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ToDo.Data;
+using ToDo.Repositories;
+using ToDo.Repositories.Interfaces;
+using ToDo.Services;
+using ToDo.Services.Interfaces;
 
 namespace ToDo.Configuration;
 
@@ -12,12 +16,18 @@ public static class DependencyInjection
             configuration.GetConnectionString("DefaultConnection")));
         #endregion
         
-        // #region Services
-        // #endregion
-        
-        // #region Repositories
-        // #endregion
-        
-        
+        #region Services
+
+        services.AddScoped<ITodoService, TodoService>();
+
+        #endregion
+
+        #region Repositories
+
+        services.AddScoped<ITodoRepository, TodoRepository>();
+
+        #endregion
+
+
     }
 }
