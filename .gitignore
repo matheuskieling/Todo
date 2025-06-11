@@ -1,0 +1,57 @@
+## Ignore a pasta bin/
+bin/
+obj/
+
+## Ignore arquivos do Visual Studio
+.vs/
+.vscode/
+.idea/
+
+## Ignore arquivos de configuração de usuário
+# User-specific files
+user.config
+userosscache.config
+# Windows Installer files
+Thumbs.db
+ehthumbs.db
+
+## Ignore arquivos de dependências do .NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Ignore arquivos de build e dependências de pacotes
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+# Node.js modules
+node_modules/
+# NPM debug files
+npm-debug.log
+
+## Ignore logs e arquivos temporários
+*.log
+*.vspscc
+*.vssscc
+
+# Ignore arquivos de backup do Visual Studio
+*.[Cc]ache
+*.dbmdl
+
+# Ignore arquivos de publicação (publish)
+publish/
+
+# Ignore arquivos específicos do MacOS
+.DS_Store
+
+# Ignore arquivos do Rider (IDE)
+.idea/
+
+# Igone o diretorio de data do postgres
+.postgres_data
+
+# Ignore arquivos .user
+*.user
+*.DotSettings.user
+
+# Ignore dev app seetings
+appsettings.Development.json
