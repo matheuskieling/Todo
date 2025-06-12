@@ -10,4 +10,10 @@ public class ApplicationDbContext : DbContext
     }
     public DbSet<Todo> Todos { get; set; }
     public DbSet<TodoCategory> TodoCategories { get; set; }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Todo>().ToTable("Todos", "todo");
+        modelBuilder.Entity<TodoCategory>().ToTable("TodoCategories", "todo");
+    }
 }

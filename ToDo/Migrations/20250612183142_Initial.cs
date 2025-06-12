@@ -11,8 +11,12 @@ namespace ToDo.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "todo");
+
             migrationBuilder.CreateTable(
                 name: "TodoCategories",
+                schema: "todo",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -27,6 +31,7 @@ namespace ToDo.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Todos",
+                schema: "todo",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -44,17 +49,20 @@ namespace ToDo.Migrations
                     table.ForeignKey(
                         name: "FK_Todos_TodoCategories_CategoryId",
                         column: x => x.CategoryId,
+                        principalSchema: "todo",
                         principalTable: "TodoCategories",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Todos_CategoryId",
+                schema: "todo",
                 table: "Todos",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Todos_Title",
+                schema: "todo",
                 table: "Todos",
                 column: "Title",
                 unique: true);
@@ -64,10 +72,12 @@ namespace ToDo.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Todos");
+                name: "Todos",
+                schema: "todo");
 
             migrationBuilder.DropTable(
-                name: "TodoCategories");
+                name: "TodoCategories",
+                schema: "todo");
         }
     }
 }

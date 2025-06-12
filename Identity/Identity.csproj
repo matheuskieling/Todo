@@ -5,10 +5,8 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <DocumentationFile>bin\Debug\net8.0\ToDo.xml</DocumentationFile>
     </PropertyGroup>
-    
+
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.17" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.6">

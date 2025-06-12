@@ -12,7 +12,7 @@ using ToDo.Data;
 namespace ToDo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250611204926_Initial")]
+    [Migration("20250612183142_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -60,7 +60,7 @@ namespace ToDo.Migrations
                     b.HasIndex("Title")
                         .IsUnique();
 
-                    b.ToTable("Todos");
+                    b.ToTable("Todos", "todo");
                 });
 
             modelBuilder.Entity("ToDo.Models.Entities.TodoCategory", b =>
@@ -81,7 +81,7 @@ namespace ToDo.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TodoCategories");
+                    b.ToTable("TodoCategories", "todo");
                 });
 
             modelBuilder.Entity("ToDo.Models.Entities.Todo", b =>
