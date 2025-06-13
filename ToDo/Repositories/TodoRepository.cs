@@ -120,7 +120,6 @@ public class TodoRepository(ApplicationDbContext context) : ITodoRepository
     public async Task<bool> DeleteCategoryAsync(Guid categoryId)
     {
         var category = await context.TodoCategories.FindAsync(categoryId);
-        
         if (category is null)
         {
             return false;
