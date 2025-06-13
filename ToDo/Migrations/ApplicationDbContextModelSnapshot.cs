@@ -41,7 +41,7 @@ namespace ToDo.Migrations
                     b.HasIndex("Username")
                         .IsUnique();
 
-                    b.ToTable("Users", "idenaatity");
+                    b.ToTable("Users", "identity");
                 });
 
             modelBuilder.Entity("ToDo.Models.Entities.Todo", b =>
@@ -111,35 +111,35 @@ namespace ToDo.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a1916263-7022-4f8f-afaf-385074521efe"),
-                            CreatedAt = new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3056),
+                            Id = new Guid("08237ce3-24c8-4504-8548-e1661abadcd4"),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Work",
-                            UpdatedAt = new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3202),
-                            UserId = new Guid("00000000-0000-0000-0000-000000000000")
+                            UpdatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            UserId = new Guid("573440b8-55e8-4f69-a7fc-e693718c9b45")
                         },
                         new
                         {
-                            Id = new Guid("65104e88-8f0f-4e85-ad90-786104ad2b22"),
-                            CreatedAt = new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3431),
+                            Id = new Guid("75cd5777-ecfc-4012-af5d-2f2c4491220e"),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "House",
-                            UpdatedAt = new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3432),
-                            UserId = new Guid("00000000-0000-0000-0000-000000000000")
+                            UpdatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            UserId = new Guid("573440b8-55e8-4f69-a7fc-e693718c9b45")
                         },
                         new
                         {
-                            Id = new Guid("f98648b6-8d2c-499a-bc70-372ef54a9887"),
-                            CreatedAt = new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3434),
+                            Id = new Guid("710a4d1f-d814-4311-bdb6-ee60c69d937d"),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Pets",
-                            UpdatedAt = new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3434),
-                            UserId = new Guid("00000000-0000-0000-0000-000000000000")
+                            UpdatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            UserId = new Guid("573440b8-55e8-4f69-a7fc-e693718c9b45")
                         },
                         new
                         {
-                            Id = new Guid("c811b26d-b48d-4eaa-8ef4-7693bea5cd7f"),
-                            CreatedAt = new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3435),
+                            Id = new Guid("4e3b1dcf-8010-47c2-a712-45bf8cce1877"),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Others",
-                            UpdatedAt = new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3436),
-                            UserId = new Guid("00000000-0000-0000-0000-000000000000")
+                            UpdatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            UserId = new Guid("573440b8-55e8-4f69-a7fc-e693718c9b45")
                         });
                 });
 

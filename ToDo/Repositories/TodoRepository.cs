@@ -31,14 +31,14 @@ public class TodoRepository(ApplicationDbContext context) : ITodoRepository
         return TodoMapper.MapToDto(todo);
     }
     
-    public async Task<TodoResponseDto> AddTodoAsync(AddTodoDto dto, Guid userId)
+    public async Task<TodoResponseDto> AddTodoAsync(AddTodoRequestDto requestDto, Guid userId)
     {
-        var category = await context.TodoCategories.FirstOrDefaultAsync(ct => ct.Name == dto.CategoryName);
+        var category = await context.TodoCategories.FirstOrDefaultAsync(ct => ct.Name == requestDto.CategoryName);
         var todo = new Todo()
         {
-            Title = dto.Title,
+            Title = requestDto.Title,
             UserId = userId,
-            Description = dto.Description,
+            Description = requestDto.Description,
             Category = category,
         };
         await context.Todos.AddAsync(todo);

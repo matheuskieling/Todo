@@ -17,9 +17,9 @@ public class TodoService(ITodoRepository repository, CurrentUser currentUser) : 
         return await repository.GetByIdAsync(id);
     }
 
-    public async Task<TodoResponseDto> AddTodoAsync(AddTodoDto dto)
+    public async Task<TodoResponseDto> AddTodoAsync(AddTodoRequestDto requestDto)
     {
-        return await repository.AddTodoAsync(dto, currentUser.UserId);
+        return await repository.AddTodoAsync(requestDto, currentUser.UserId);
     }
 
     public async Task<bool> CompleteAsync(Guid id)

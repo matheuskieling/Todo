@@ -17,7 +17,7 @@ namespace ToDo.Migrations
                 name: "todo");
 
             migrationBuilder.EnsureSchema(
-                name: "idenaatity");
+                name: "identity");
 
             migrationBuilder.CreateTable(
                 name: "TodoCategories",
@@ -37,7 +37,7 @@ namespace ToDo.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Users",
-                schema: "idenaatity",
+                schema: "identity",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -81,10 +81,10 @@ namespace ToDo.Migrations
                 columns: new[] { "Id", "CreatedAt", "Name", "UpdatedAt", "UserId" },
                 values: new object[,]
                 {
-                    { new Guid("65104e88-8f0f-4e85-ad90-786104ad2b22"), new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3431), "House", new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3432), new Guid("00000000-0000-0000-0000-000000000000") },
-                    { new Guid("a1916263-7022-4f8f-afaf-385074521efe"), new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3056), "Work", new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3202), new Guid("00000000-0000-0000-0000-000000000000") },
-                    { new Guid("c811b26d-b48d-4eaa-8ef4-7693bea5cd7f"), new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3435), "Others", new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3436), new Guid("00000000-0000-0000-0000-000000000000") },
-                    { new Guid("f98648b6-8d2c-499a-bc70-372ef54a9887"), new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3434), "Pets", new DateTime(2025, 6, 13, 12, 12, 53, 338, DateTimeKind.Utc).AddTicks(3434), new Guid("00000000-0000-0000-0000-000000000000") }
+                    { new Guid("08237ce3-24c8-4504-8548-e1661abadcd4"), new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Work", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), new Guid("573440b8-55e8-4f69-a7fc-e693718c9b45") },
+                    { new Guid("4e3b1dcf-8010-47c2-a712-45bf8cce1877"), new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Others", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), new Guid("573440b8-55e8-4f69-a7fc-e693718c9b45") },
+                    { new Guid("710a4d1f-d814-4311-bdb6-ee60c69d937d"), new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Pets", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), new Guid("573440b8-55e8-4f69-a7fc-e693718c9b45") },
+                    { new Guid("75cd5777-ecfc-4012-af5d-2f2c4491220e"), new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "House", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), new Guid("573440b8-55e8-4f69-a7fc-e693718c9b45") }
                 });
 
             migrationBuilder.CreateIndex(
@@ -102,7 +102,7 @@ namespace ToDo.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Username",
-                schema: "idenaatity",
+                schema: "identity",
                 table: "Users",
                 column: "Username",
                 unique: true);
@@ -117,7 +117,7 @@ namespace ToDo.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users",
-                schema: "idenaatity");
+                schema: "identity");
 
             migrationBuilder.DropTable(
                 name: "TodoCategories",

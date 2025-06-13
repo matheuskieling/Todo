@@ -3,7 +3,7 @@ using ToDo.Models.Entities;
 
 namespace ToDo.Models.DTO;
 
-public record AddTodoDto(
+public record AddTodoRequestDto(
     [Required] string Title,
     string? Description,
     string? CategoryName
