@@ -5,10 +5,15 @@ namespace ToDo.Services.Interfaces;
 
 public interface ITodoService
 {
-    Task<List<Todo>> GetAllAsync();
-    Task<Todo?> GetByIdAsync(Guid id);
-    Task<Todo> AddTodoAsync(AddTodoDto todo);
+    Task<List<TodoResponseDto>> GetAllAsync();
+    Task<TodoResponseDto> GetByIdAsync(Guid id);
+    Task<TodoResponseDto> AddTodoAsync(AddTodoDto todo);
     Task<bool> CompleteAsync(Guid id);
-    Task<Todo?> UpdateTodoAsync(Guid id, UpdateTodoDto dto);
+    Task<TodoResponseDto> UpdateTodoAsync(Guid id, UpdateTodoDto dto);
     Task<bool> DeleteAsync(Guid id);
+    Task<List<TodoResponseDto>> GetAllByCategoryAsync(string categoryName);
+
+    Task<List<TodoCategory>> GetCategoriesAsync();
+    Task<TodoCategory> AddCategoryAsync(string categoryName);
+    Task<bool> DeleteCategoryAsync(Guid categoryId);
 }

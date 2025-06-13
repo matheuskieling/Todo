@@ -2,34 +2,48 @@
 using ToDo.Data;
 using ToDo.Models.DTO;
 using ToDo.Models.Entities;
+using ToDo.Models.Mappers;
 using ToDo.Repositories.Interfaces;
 
 namespace ToDo.Repositories;
 
 public class TodoRepository(ApplicationDbContext context) : ITodoRepository
 {
-    public async Task<List<Todo>> GetAllAsync()
+    public async Task<List<TodoResponseDto>> GetAllAsync(Guid userId)
     {
-        return await context.Todos.ToListAsync();
+        return await context.Todos
+            .Include(t => t.Category)
+            .Where(t => t.UserId == userId)
+            .Select(t => TodoMapper.MapToDto(t)).ToListAsync();
     }
 
-    public async Task<Todo?> GetByIdAsync(Guid id)
+    public async Task<TodoResponseDto> GetByIdAsync(Guid id)
     {
-        return await context.Todos.FindAsync(id);
-    }
+        var todo = await context.Todos
+            .Include(t => t.Category)
+            .Where(t => t.Id == id)
+            .FirstOrDefaultAsync();
+        if (todo is null)
+        {
+            return null;
+        }
 
-    public async Task<Todo> AddTodoAsync(AddTodoDto dto)
+        return TodoMapper.MapToDto(todo);
+    }
+    
+    public async Task<TodoResponseDto> AddTodoAsync(AddTodoDto dto, Guid userId)
     {
         var category = await context.TodoCategories.FirstOrDefaultAsync(ct => ct.Name == dto.CategoryName);
         var todo = new Todo()
         {
             Title = dto.Title,
+            UserId = userId,
             Description = dto.Description,
             Category = category,
         };
         await context.Todos.AddAsync(todo);
         await context.SaveChangesAsync();
-        return todo;
+        return TodoMapper.MapToDto(todo);
     }
 
     public async Task<bool> CompleteAsync(Guid id)
@@ -49,7 +63,7 @@ public class TodoRepository(ApplicationDbContext context) : ITodoRepository
         return true;
     }
 
-    public async Task<Todo?> UpdateTodoAsync(Guid id, UpdateTodoDto dto)
+    public async Task<TodoResponseDto> UpdateTodoAsync(Guid id, UpdateTodoDto dto)
     {
         var todo = await context.Todos.FindAsync(id);
         var category = await context.TodoCategories.FirstOrDefaultAsync(ct => ct.Name == dto.CategoryName);
@@ -65,7 +79,7 @@ public class TodoRepository(ApplicationDbContext context) : ITodoRepository
         context.Todos.Update(todo);
         await context.SaveChangesAsync();
         
-        return todo;
+        return TodoMapper.MapToDto(todo);
     }
 
     public async Task<bool> DeleteAsync(Guid id)
@@ -78,6 +92,41 @@ public class TodoRepository(ApplicationDbContext context) : ITodoRepository
         context.Todos.Remove(todo);
         await context.SaveChangesAsync();
         
+        return true;
+    }
+    
+    public async Task<List<TodoResponseDto>> GetAllByCategoryAsync(Guid userId, string categoryName)
+    {
+        return await context.Todos
+            .Include(t => t.Category)
+            .Where(t => t.UserId == userId && t.Category != null && t.Category.Name == categoryName)
+            .Select(t => TodoMapper.MapToDto(t)).ToListAsync();
+    }
+
+    public async Task<List<TodoCategory>> GetCategoriesAsync(Guid userId)
+    {
+        var categories = await context.TodoCategories.Where(c => c.UserId == userId).ToListAsync();
+        return categories;
+    }
+
+    public async Task<TodoCategory> AddCategoryAsync(string categoryName, Guid userId)
+    {
+        var category = new TodoCategory { Name = categoryName , UserId = userId };
+        await context.TodoCategories.AddAsync(category);
+        await context.SaveChangesAsync();
+        return category;
+    }
+
+    public async Task<bool> DeleteCategoryAsync(Guid categoryId)
+    {
+        var category = await context.TodoCategories.FindAsync(categoryId);
+        if (category is null)
+        {
+            return false;
+        }
+
+        context.TodoCategories.Remove(category);
+        await context.SaveChangesAsync();
         return true;
     }
 }

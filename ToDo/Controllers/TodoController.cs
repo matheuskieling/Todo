@@ -28,6 +28,13 @@ public class TodosController(ITodoService service) : ControllerBase
         return Ok(todo);
     }
     
+    [HttpGet("Filter")]
+    public async Task<IActionResult> GetByCategory([FromQuery] string category)
+    {
+        var todos = await service.GetAllByCategoryAsync(category);
+        return Ok(todos);
+    }
+    
     [HttpPost]
     public async Task<IActionResult> AddTodo(AddTodoDto dto)
     {
@@ -46,7 +53,7 @@ public class TodosController(ITodoService service) : ControllerBase
         return Ok(todo);
     }
 
-    [HttpPatch("/complete/{id}")]
+    [HttpPatch("Complete/{id}")]
     public async Task<IActionResult> CompleteTodo(Guid id)
     {
         var todo = await service.CompleteAsync(id);
@@ -66,6 +73,31 @@ public class TodosController(ITodoService service) : ControllerBase
             return NotFound();
         }
         return Ok();
+    }
+
+    [HttpGet("Category")]
+    public async Task<IActionResult> GetAllCategories()
+    {
+        var categories = await service.GetCategoriesAsync();
+        return Ok(categories);
+    }
+    
+    [HttpPost("Category")]
+    public async Task<IActionResult> AddCategory(AddCategoryDto dto)
+    {
+        var category = await service.AddCategoryAsync(dto.CategoryName);
+        return CreatedAtAction(nameof(AddCategory), new { Id = category.Id }, category);
+    }
+    
+    [HttpDelete("Category/{id}")]
+    public async Task<IActionResult> DeleteCategory(Guid categoryId)
+    {
+        var success = await service.DeleteCategoryAsync(categoryId);
+        if (!success)
+        {
+            return NotFound();
+        }
+        return NoContent();
     }
     
 }

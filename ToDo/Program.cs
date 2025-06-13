@@ -51,6 +51,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseOpenApiDocumentation();
+app.DependencyInjectionInit();
 app.MapControllers();
 
 app.Run();
