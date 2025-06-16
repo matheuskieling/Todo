@@ -17,7 +17,7 @@ public class TodoRepository(ApplicationDbContext context) : ITodoRepository
             .Select(t => TodoMapper.MapToDto(t)).ToListAsync();
     }
 
-    public async Task<TodoResponseDto> GetByIdAsync(Guid id)
+    public async Task<TodoResponseDto?> GetByIdAsync(Guid id)
     {
         var todo = await context.Todos
             .Include(t => t.Category)
@@ -63,7 +63,7 @@ public class TodoRepository(ApplicationDbContext context) : ITodoRepository
         return true;
     }
 
-    public async Task<TodoResponseDto> UpdateTodoAsync(Guid id, UpdateTodoDto dto)
+    public async Task<TodoResponseDto?> UpdateTodoAsync(Guid id, UpdateTodoDto dto)
     {
         var todo = await context.Todos.FindAsync(id);
         var category = await context.TodoCategories.FirstOrDefaultAsync(ct => ct.Name == dto.CategoryName);
