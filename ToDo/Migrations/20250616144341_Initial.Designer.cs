@@ -12,7 +12,7 @@ using ToDo.Data;
 namespace ToDo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250616141927_Initial")]
+    [Migration("20250616144341_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -31,6 +31,11 @@ namespace ToDo.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
@@ -38,6 +43,9 @@ namespace ToDo.Migrations
                     b.Property<string>("PasswordSalt")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Username")
                         .IsRequired()

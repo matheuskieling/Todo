@@ -1,5 +1,7 @@
 ﻿using Identity.Infra;
+using Identity.Model.Dto;
 using Identity.Model.Entities;
+using Identity.Model.Mappers;
 using Identity.Repositories.Interfaces;
 using Identity.Services.Interfaces;
 
@@ -18,7 +20,7 @@ public class UserService(IUserRepository repository) : IUserService
         return user;
     }
 
-    public User CreateUser(string username, string password)
+    public UserResponseDto CreateUser(string username, string password)
     {
         var (hash, salt) = PasswordHasher.HashPassword(password);
         var user = new User
@@ -27,6 +29,7 @@ public class UserService(IUserRepository repository) : IUserService
             Password = hash,
             PasswordSalt = salt,
         };
-        return repository.CreateUser(user);
+        var userFromDb =  repository.CreateUser(user);
+        return UserMapper.ToUserResponseDto(userFromDb);
     }
 }

@@ -28,7 +28,7 @@ public class AuthController : ControllerBase
     public IActionResult Register(RegisterRequest registerRequest)
     {
         var user = _userService.CreateUser(registerRequest.Username, registerRequest.Password);
-        return CreatedAtAction(nameof(Register), new { id = user.Id }, user);
+        return CreatedAtAction(nameof(Register), new { id = user.userId }, user);
     }
 
     [HttpPost("Login")]

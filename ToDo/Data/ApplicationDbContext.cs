@@ -51,6 +51,8 @@ public class ApplicationDbContext : DbContext
                 UserId = Guid.Parse("573440b8-55e8-4f69-a7fc-e693718c9b45")
             }
         ]);
-        modelBuilder.Entity<User>().ToTable("Users", "identity");
+        modelBuilder.Entity<User>().ToTable("Users", "identity")
+            .Property( b => b.CreatedAt )
+            .HasDefaultValueSql("NOW()");
     }
 }
