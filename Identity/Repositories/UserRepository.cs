@@ -4,9 +4,9 @@ namespace Identity.Repositories.Interfaces;
 
 public class UserRepository(AppDbContext context) : IUserRepository
 {
-    public User? GetUser(string username, string password)
+    public User? GetUserByUsername(string username)
     {
-        return context.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
+        return context.Users.FirstOrDefault(u => u.Username == username);
     }
 
     public User CreateUser(User user)
